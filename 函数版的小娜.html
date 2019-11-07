@@ -61,20 +61,8 @@
         calc();
         break;
       case '2':
-        var date = new Date();
-        var y = date.getFullYear();
-        var m = date.getMonth() + 1;
-        var d = date.getDate();
-        var h = date.getHours();
-        var min = date.getMinutes();
-        var s = date.getSeconds();
-        // 补零
-        m = buling(m);
-        d = buling(d);
-        h = buling(h);
-        min = buling(min);
-        s = buling(s);
-        var time = y + '-' + m + '-' + d + ' ' + h + ':' + min + ':' + s;
+        // 直接调用封装好的函数，得到日期
+        var time = formatDate();
         alert(time);
         break;
       case '3':
@@ -97,6 +85,24 @@
       sum += parseFloat(arr[i]);
     }
     alert('求出的和为：' + sum);
+  }
+
+  // 把获取时间的代码封装成函数
+  function formatDate() {
+    var date = new Date();
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    var h = date.getHours();
+    var min = date.getMinutes();
+    var s = date.getSeconds();
+    // 补零
+    m = buling(m);
+    d = buling(d);
+    h = buling(h);
+    min = buling(min);
+    s = buling(s);
+    return y + '-' + m + '-' + d + ' ' + h + ':' + min + ':' + s;
   }
 
 </script>
