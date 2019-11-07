@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  /*
+  小娜的功能
+    1.一开始可以弹出询问的框
+    2.输入q可以退出
+    3.输入1，可以求和
+    4.输入2，可以得到当前的时间
+    5.输入3，可以得到随机笑话
+    6.输入其他，弹出一个提示框，不懂用户的行为
+  */
+
+  // 把判断补零的过程，封装到外面，简化代码
+  function buling(n) {
+    // if (n < 10) {
+    //   n = '0' + n;
+    // }
+    // return n;
+    return n < 10 ? '0' + n : n;
+  }
+
+  // 循环在执行的时候，需要先把循环执行完毕，然后才会向下执行，如果把这个数组放到循环的后面，循环如果没有终止，预解析会把变量提升，但是赋值还是在循环的后面，在循环里面得到的list变量，就是undefined，就无法使用，所以必须把这个数组放到循环的前面
+  var list = [
+          "为什么结婚都喜欢选好日子，因为结婚后都没有好日子。",
+          "为什么超人都喜欢穿紧身衣，因为救人要紧",
+          "火柴有个问题想不懂，然后就挠头，自己燃烧了自己",
+          "包子跑步，为什么在路上消失了，因为太饿自己把自己吃了",
+          "自己的事情自己做，函数也能调用自己"
+        ];
+
+
+  //1 循环的弹出输入框
+  while (true) {
+    var msg = prompt("你好，我是传智小娜，你的语音助手~~~~~~~\n" +
+      "输入《编号》或《关键词》选择功能，输入q退出聊天\n" +
+      " 1.计算《总和》\n" +
+      " 2.获取《时间》\n" +
+      " 3.讲个《笑话》\n");
+    // 2 如果输入的q，把循环终止
+    // 注意不要把这个q的判断，写到switch里面，因为switch里面的break，值终止switch的执行，而不是终止循环
+    if (msg === 'q') {
+      alert('程序终止');
+      break;
+    }
+    // 判断输入123
+    switch (msg) {
+      case '1':
+        var ns = prompt('请输入多个数字，使用逗号隔开');
+        var arr = ns.split(',');
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+          sum += parseFloat(arr[i]);
+        }
+        alert('求出的和为：' + sum);
+        break;
+      case '2':
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        var h = date.getHours();
+        var min = date.getMinutes();
+        var s = date.getSeconds();
+        // 补零
+        m = buling(m);
+        d = buling(d);
+        h = buling(h);
+        min = buling(min);
+        s = buling(s);
+        var time = y +'-' + m + '-' + d + ' ' + h + ':' + min + ':' + s;
+        alert(time);
+        break;
+      case '3':
+        var r = Math.floor(Math.random() * list.length);
+        alert(list[r]);
+        break;
+      default:
+        alert('我听不懂您在说什么');
+        break;
+    }
+  }
+
+
+</script>
+
+</html>
